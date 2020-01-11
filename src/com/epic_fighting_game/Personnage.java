@@ -70,6 +70,7 @@ public abstract class Personnage implements IAttaques_Personnage {
 
     public String toString(){
         String str = "Je suis un objet de la class " + this.getClass() +
+                " qui s'appelle "+ this.getClass().getSimpleName() +
                 ", j'ai un niveau de :  " + this.niveau +
                 ", j'ai " + this.vie + " points de vie,  j'ai une force de : " + this.force +
                 ", j'ai une agilité de : " + this.agilite +
