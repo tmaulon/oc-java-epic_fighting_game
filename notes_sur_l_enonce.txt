@@ -1,0 +1,37 @@
+Classe Perso :
+
+- caractéristique(s) :	
+	- categorie: string 	=> choix entre guerrier, rodeur ou mage
+	- niveau: int  		=> choisi par le joueur (min 1, max 100)
+	- vie: int  		=> égale au niveau du joueur * 5
+	- force: int 		=> choisie par le joueur (min 0, max 100)
+	- agilite: int 		=> choisie par le joueur (min 0, max 100)
+	- intelligence: int 	=> choisie par le joueur (min 0, max 100)
+				=> force + agilité + intelligence <= niveau
+
+- fonctionnalité(s) : ces fonctionnalités sont dépendantes du perso choisi et donc hérite de perso
+	- attaque basique : 
+		- guerrier :
+			=> coup_d_epee : dommages = force
+
+		- rodeur :
+			=> tir_a_l_arc : dommages = agilite
+
+		- mage :
+			=> boule_de_feu: dommages = intelligence
+
+	- attaque spéciale :
+		- guerrier :
+			=> coup_de_rage : dommages = force*2 
+					& vie = vie - force/2
+
+		- rodeur :
+			=> concentration: agilite = agilite + niveau/2
+
+		- mage :
+			=> soin 	: si vie + intelligence*2 > vie(initiale c.a.d. niveau*5)
+						vie = vie(initiale c.a.d. niveau*5)
+					  sinon vie = vie + intelligence*2
+							
+
+	
