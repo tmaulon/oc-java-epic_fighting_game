@@ -1,6 +1,6 @@
 package com.epic_fighting_game;
 
-public class Personnage {
+public abstract class Personnage implements IAttaques_Personnage {
     private int niveau;
     private int vie;
     private int force;
@@ -15,6 +15,9 @@ public class Personnage {
         this.intelligence = intelligence;
     }
 
+    /*
+     * Getters & Setters
+     * */
     public int getNiveau() {
         return niveau;
     }
@@ -53,6 +56,25 @@ public class Personnage {
 
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+
+    @Override
+    public void attaque_basique() {
+        System.out.println("Attaque basique par défaut.");
+    }
+
+    @Override
+    public void attaque_speciale() {
+        System.out.println("Attaque spéciale par défaut.");
+    }
+
+    public String toString(){
+        String str = "Je suis un objet de la class " + this.getClass() +
+                ", j'ai un niveau de :  " + this.niveau +
+                ", j'ai " + this.vie + " points de vie,  j'ai une force de : " + this.force +
+                ", j'ai une agilité de : " + this.agilite +
+                ", et j'ai une intelligence de : " + this.intelligence;
+        return str;
     }
 
 }
