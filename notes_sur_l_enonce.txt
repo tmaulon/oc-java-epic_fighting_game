@@ -1,6 +1,6 @@
 Classe Perso :
 
-- caractéristique(s) :	
+- caractéristique(s) / attribut(s) :	
 	- categorie: string 	=> choix entre guerrier, rodeur ou mage
 	- niveau: int  		=> choisi par le joueur (min 1, max 100)
 	- vie: int  		=> égale au niveau du joueur * 5
@@ -9,7 +9,13 @@ Classe Perso :
 	- intelligence: int 	=> choisie par le joueur (min 0, max 100)
 				=> force + agilité + intelligence <= niveau
 
-- fonctionnalité(s) : ces fonctionnalités sont dépendantes du perso choisi et donc hérite de perso
+- fonctionnalité(s) / méthode(s) : ces methodes sont dépendantes du perso choisi et donc elles sont abstraites.
+	- public abstract void attaque_basique(); 
+	- public abstract void attaque_speciale();
+
+
+Et en héritant de perso, nous devons les redédinir dans chacune des classes ou alors
+créer une interface Attaque avec une void attaque_basique() et une void attaque_speciale() qu'il faudra @Override lorsque l'on implemente cette interface aux catégories de Perso en fonction der celle-ci :
 	- attaque basique : 
 		- guerrier :
 			=> coup_d_epee : dommages = force
@@ -32,6 +38,7 @@ Classe Perso :
 			=> soin 	: si vie + intelligence*2 > vie(initiale c.a.d. niveau*5)
 						vie = vie(initiale c.a.d. niveau*5)
 					  sinon vie = vie + intelligence*2
+
 							
 
 	
