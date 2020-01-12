@@ -1,18 +1,38 @@
 package com.epic_fighting_game;
 
-public abstract class Personnage implements IAttaques_Personnage {
+public abstract class Personnage implements IPersonnage {
     private int niveau;
     private int vie;
     private int force;
     private int agilite;
     private int intelligence;
 
-    public Personnage(int niveau, int vie, int force, int agilite, int intelligence) {
-        this.niveau = niveau;
-        this.vie = vie;
-        this.force = force;
-        this.agilite = agilite;
-        this.intelligence = intelligence;
+    public Personnage(int niveau, int force, int agilite, int intelligence) {
+        if (niveau >= 1 && niveau <= 100){
+            if (force + agilite + intelligence <= niveau ) {
+                this.niveau = niveau;
+                this.vie = niveau * 5;
+                if(force >= 0 && force <= 100) {
+                    this.force = force;
+                } else {
+                    System.out.println("La force du perso doit être comprise entre 0 inclus et 100 inclus.");
+                }
+                if(agilite >= 0 && agilite <= 100) {
+                    this.agilite = agilite;
+                } else {
+                    System.out.println("L'agilité du perso doit être comprise entre 0 inclus et 100 inclus.");
+                }
+                if(intelligence >= 0 && intelligence <= 100) {
+                    this.intelligence = intelligence;
+                } else {
+                    System.out.println("L'intelligence du perso doit être comprise entre 0 inclus et 100 inclus.");
+                }
+            } else {
+                System.out.println("Le niveau du perso doit être supérieur ou égal à la somme de sa force, de son agilité et de son intelligence.");
+            }
+        } else {
+            System.out.println("Veuillez choisir un niveau compris entre 1 inclus et 100 inclus.");
+        }
     }
 
     /*
@@ -31,7 +51,7 @@ public abstract class Personnage implements IAttaques_Personnage {
     }
 
     public void setVie(int vie) {
-        this.vie = vie;
+        this.vie = vie ;
     }
 
     public int getForce() {
@@ -58,23 +78,38 @@ public abstract class Personnage implements IAttaques_Personnage {
         this.intelligence = intelligence;
     }
 
-    @Override
-    public void attaque_basique() {
-        System.out.println("Attaque basique par défaut.");
+    public String getAttaqueBasiqueNom() {
+        switch (this.getClass().getSimpleName()) {
+            case "Guerrier":
+                return "Coup d'épée";
+            case "Mage":
+                return "Boule de feu";
+            case "Rodeur":
+                return "Tir à l'arc";
+            default:
+                return "Error : on ne trouve pas d'attaque basique pour un personnage de ce type";
+        }
     }
 
-    @Override
-    public void attaque_speciale() {
-        System.out.println("Attaque spéciale par défaut.");
+    public String getAttaqueSpecialeNom() {
+        switch (this.getClass().getSimpleName()) {
+            case "Guerrier":
+                return "Coup de rage";
+            case "Mage":
+                return "Soin";
+            case "Rodeur":
+                return "Concentration";
+            default:
+                return "Error : on ne trouve pas d'attaque spéciale pour un personnage de ce type";
+        }
     }
 
-    public String toString(){
-        String str = "Je suis un objet de la class " + this.getClass() +
-                " qui s'appelle "+ this.getClass().getSimpleName() +
-                ", j'ai un niveau de :  " + this.niveau +
-                ", j'ai " + this.vie + " points de vie,  j'ai une force de : " + this.force +
-                ", j'ai une agilité de : " + this.agilite +
-                ", et j'ai une intelligence de : " + this.intelligence;
+    public String toString(int counter){
+        String str = this.cri() + " je suis le " + this.getClass().getSimpleName() + "Joueur " + counter +
+                " un niveau " + this.niveau +
+                " je possède " + this.vie + " de vitalité, " + this.force +
+                " de force, " + this.agilite +
+                " d'agilité, et " + this.intelligence + " d'intelligence !";
         return str;
     }
 
