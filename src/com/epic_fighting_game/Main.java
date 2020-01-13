@@ -1,5 +1,6 @@
 package com.epic_fighting_game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -26,37 +27,42 @@ public class Main {
         compteur_joueur = compteur_joueur + 1;
         System.out.println(joueur2.toString(compteur_joueur));
 
+        ArrayList<Personnage> joueurs = new ArrayList<>();
+        joueurs.add(joueur1);
+        joueurs.add(joueur2);
+
         /*
-        * Début du comnbat :
-        *  -> le joueur 1 commence et choisi un type d'attaque
+        * Début du comnbat
         * */
-        System.out.println("Joueur 1 (" + joueur1.getVie() + "Vitalité) veuillez choisir votre action(1 : Attaque Basique, 2 : Attaque Spéciale");
-        Integer type_d_attaque_choisi = sc.nextInt();
-        if (type_d_attaque_choisi.equals(1)){
-            System.out.println(
-                    "Joueur 1 utilise " +
-                    joueur1.getAttaqueBasiqueNom() +
-                    " et inflige " +
-                    joueur1.attaque_basique() +
-                    " dommages."
-            );
-            System.out.println("Joueur 2 a " + joueur2.getVie() + " points de vie");
-            joueur2.setVie(joueur2.getVie() - joueur1.attaque_basique());
-            System.out.println("Joueur 2 perd " + joueur1.attaque_basique() + " points de vie, il lui reste maintenant " + joueur2.getVie() + " points de vie");
-        } else if(type_d_attaque_choisi.equals(2)) {
-            System.out.println(
-                    "Joueur 1 utilise " +
-                            joueur1.getAttaqueSpecialeNom() +
-                            " et inflige " +
-                            joueur1.attaque_speciale() +
-                            " dommages."
-            );
-            System.out.println("Joueur 2 a " + joueur2.getVie() + " points de vie");
-            joueur2.setVie(joueur2.getVie() - joueur1.attaque_speciale());
-            System.out.println("Joueur 2 perd " + joueur1.attaque_speciale() + " points de vie, il lui reste maintenant " + joueur2.getVie() + " points de vie");
+        for (int i = 0; i < joueurs.size(); i++) {
+            int numero_joueur_actif = i + 1;
+            int numero_joueur_passif = i == 1 ? 1 : 2;
+            int index_joueur_actif = i;
+            int index_joueur_passif = i == 1 ? 0 : 1;
+            System.out.println("Joueur " + numero_joueur_actif + " (" + joueurs.get(index_joueur_actif).getVie() + " Vitalité) veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)");
+            Integer type_d_attaque_choisi = sc.nextInt();
+            if (type_d_attaque_choisi.equals(1)){
+                joueurs.get(index_joueur_actif).attaque_basique(numero_joueur_actif, numero_joueur_passif, joueurs.get(index_joueur_passif));
+            } else if(type_d_attaque_choisi.equals(2)) {
+                joueurs.get(index_joueur_actif).attaque_speciale(numero_joueur_actif, numero_joueur_passif, joueurs.get(index_joueur_passif));
+            }
+            if (joueurs.get(index_joueur_passif).getVie() <= 0){
+                System.out.println("Joueur " + numero_joueur_passif+ " a perdu !");
+                // On met i à 1 pour sortir de la boucle
+                i = 1;
+            } else if (joueurs.get(index_joueur_actif).getVie() <= 0) {
+                System.out.println("Joueur " + numero_joueur_actif+ " a perdu !");
+                // On met i à 1 pour sortir de la boucle
+                i = 1;
+            } else {
+                // Le second joueur jou et les joueurs ont encore des points de vie
+                if(i == 1) {
+                    // Donc on relance la boucle
+                    i = -1;
+                }
+            }
         }
     }
-
 
     /**
      * Create a player with this method
