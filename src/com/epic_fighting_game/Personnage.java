@@ -78,34 +78,8 @@ public abstract class Personnage implements IPersonnage {
         this.intelligence = intelligence;
     }
 
-    public String getAttaqueBasiqueNom() {
-        switch (this.getClass().getSimpleName()) {
-            case "Guerrier":
-                return "Coup d'épée";
-            case "Mage":
-                return "Boule de feu";
-            case "Rodeur":
-                return "Tir à l'arc";
-            default:
-                return "Error : on ne trouve pas d'attaque basique pour un personnage de ce type";
-        }
-    }
-
-    public String getAttaqueSpecialeNom() {
-        switch (this.getClass().getSimpleName()) {
-            case "Guerrier":
-                return "Coup de rage";
-            case "Mage":
-                return "Soin";
-            case "Rodeur":
-                return "Concentration";
-            default:
-                return "Error : on ne trouve pas d'attaque spéciale pour un personnage de ce type";
-        }
-    }
-
     public String toString(int counter){
-        String str = this.cri() + " je suis le " + this.getClass().getSimpleName() + "Joueur " + counter +
+        String str = this.cri() + " je suis le " + this.getClass().getSimpleName() + " Joueur " + counter +
                 " un niveau " + this.niveau +
                 " je possède " + this.vie + " de vitalité, " + this.force +
                 " de force, " + this.agilite +
