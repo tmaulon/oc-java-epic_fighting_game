@@ -3,7 +3,10 @@
 >Jeu de combat épique entre Guerrier, Rôdeur et Mage ! 
 
 Ce jeu est prévu pour 2 joueurs et fonctionne dans le terminal/console.
-Après avoir cloné ce repo, il suffit de run la classe Main et d'intéragir dans le terminal/console
+Après avoir cloné ce repo, il suffit de run la classe Main et d'intéragir dans le terminal/console.
+En voici un exemple :
+ 
+ ![alt screenshot](https://user.oc-static.com/upload/2018/06/06/15282757736914_image2.png)
 
 ## Comment se déroule le jeu :
 - Le jeu commence par proposer au **joueur 1** de choisir entre **Guerrier**, **Rôdeur** ou **Mage**.
